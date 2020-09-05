@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Simple-Chat</title>
+</head>
+<body>
+<script>
+    var ws = new WebSocket("ws://localhost:8080/ws");
+    ws.onopen = function () {
+        console.log("open");
+        ws.send("hello");
+    };
+    ws.onmessage = function (e) {
+        console.log(e.data);
+    };
+    ws.onclose = function (e) {
+        console.log("close");
+    };
+    ws.onerror = function (e) {
+        console.log(error);
+    }
+</script>
+</body>
+</html>
