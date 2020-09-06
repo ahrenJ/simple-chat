@@ -6,6 +6,14 @@
     <title>Simple-Chat</title>
 </head>
 <body>
+<div style="height: 400px; overflow-y: scroll">
+    <span></span>
+</div>
+<div>
+    <input id="input-msg" type="text" placeholder="输入消息">
+    <button onclick="send()">发送</button>
+</div>
+
 <script>
     var ws = new WebSocket("ws://localhost:8080/ws");
     ws.onopen = function () {
@@ -20,6 +28,12 @@
     };
     ws.onerror = function (e) {
         console.log(error);
+    }
+
+    function send() {
+        const msg = $('#input-msg').val();
+        ws.send(msg);
+        $('#input-msg').val("");
     }
 </script>
 </body>
